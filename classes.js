@@ -590,8 +590,10 @@ demo.classes.prototype = {
             this.drink = game.add.sound('glug')
             
             this.healthText = game.add.text(330,8,'- ' + this.numOfHealthPotions,{fontsize: '25px', fill: '#ffffff'})
+            this.healthText.font = 'augusta'
             this.healthText.fixedToCamera = true
             this.manaText = game.add.text(330,72,'- ' + this.numOfManaPotions,{fontsize: '25px', fill: '#ffffff'})
+            this.manaText.font = 'augusta'
             this.manaText.fixedToCamera = true
             
             this.add = function(item) {

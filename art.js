@@ -10,6 +10,7 @@ demo.art.prototype = {
     // ENVIRONMENT (TILEMAPS, TILESETS, BACKGROUNDS)
         
         //Title Screen
+        game.load.bitmapFont('augusta','assets/font/font.png','assets/font/font.fnt')
         game.load.image("titlescreen", "assets/sprites/titlescreen.png");
         game.load.image("button", "assets/sprites/button.png");
         game.load.image('titleBackground', 'assets/tilesets_backgrounds/titleBackground.png');
