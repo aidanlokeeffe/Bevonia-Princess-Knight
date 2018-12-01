@@ -145,25 +145,19 @@ demo.state1.prototype = {
                         enemies1[j].self.animations.stop();
                         knockedTo = (enemies1[j].self.body.x - (enemy_distance*2));
                     }
-//                    enemies1[j].self.body.velocity.x = -500;
                     if (enemies1[j].self.body.x <= (knockedTo + enemy_distance/2)){
                         if (bevonia.self.scale.x == -1){
-//                        enemies1[j].self.body.velocity.x = -500;
                         enemies1[j].self.body.velocity.y = -200;
                         }
                         else if (bevonia.self.scale.x == 1){
-//                            enemies1[j].self.body.velocity.x = 500;
                             enemies1[j].self.body.velocity.y = -200;
                         }
-//                        game.time.events.add(20, enemies1[j].self.body.velocity.y = -10, this);
                     }
                     else{
                         if (bevonia.self.scale.x == -1){
-//                        enemies1[j].self.body.velocity.x = -500;
                         enemies1[j].self.body.velocity.y = -200;
                         }
                         else if (bevonia.self.scale.x == 1){
-//                            enemies1[j].self.body.velocity.x = 500;
                             enemies1[j].self.body.velocity.y = -200;
                         }
                     }
@@ -212,6 +206,15 @@ demo.state1.prototype = {
                     bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
                     game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
                     
+                }
+                else if (bevonia.vulnerable && bevonia.stabbing){
+                    getHit.play();
+                    function invincible() {
+                    bevonia.self.body.sprite.alpha = 1;
+                }
+                    bevonia.self.body.sprite.alpha = 0.5;
+                    bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
+                    game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
                 }
             }
             enemies1[j].manageVulnerability();

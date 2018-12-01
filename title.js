@@ -5,12 +5,7 @@ demo.title.prototype = {
         titlescreenBackground = game.add.sprite(100,0,'titleBackground');
         
         this.createButton(game,"Play",game.world.centerX,game.world.centerY+32,200,50,function(){
-            this.state.start('state1');
-            backgroundMusic.stop();
-        });
-        
-        this.createButton(game,"Tutorial",game.world.centerX,game.world.centerY+152,200,50,function(){
-            this.state.start("state0")
+            this.state.start('state0');
             backgroundMusic.stop();
         });
         

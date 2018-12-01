@@ -684,12 +684,14 @@ demo.classes.prototype = {
             this.self.animations.add("fallen", [0], 0, false);
             this.self.animations.add("wave", [1,2,3,4], 0, false);
             this.self.animations.play("fallen", 0, true);
+            this.checkpointSound = game.sound.add('checkpoint');
             
 //            this.replacementInventory = new Inventory(this.player)
             this.replacementHealth = 1
             this.replacementMana = 1
             
             this.activateCheckpoint = function(){
+                this.checkpointSound.play();
                 this.activated = true
                 this.self.animations.play("wave", 8, true);
                 this.player.lastResetX = x
@@ -730,7 +732,7 @@ demo.classes.prototype = {
         aoeItem = function (x, y, player) {
             // Setup
             this.self = game.add.sprite(x, y, "aoeObject");
-            this.interactSound = game.sound.add('interact');
+            this.getMagicSound = game.sound.add('getMagic');
             this.self.anchor.setTo(0.5, 0.5);
             game.physics.enable(this.self);
             this.player = player;
@@ -741,7 +743,7 @@ demo.classes.prototype = {
             
             // Interaction
             this.interactWith = function () {
-                this.interactSound.play();
+                this.getMagicSound.play();
                 this.player.hasAOE = true;
                 this.self.kill();
             }     
