@@ -102,6 +102,7 @@ demo.state0.prototype = {
         enemies0 = [skeleton0, spider0];
         
         //MUSIC
+        getHit = game.sound.add('getHit');
         backgroundMusic = game.add.audio('tutorial');
         backgroundMusic.loop = true;
         backgroundMusic.play();  
@@ -207,6 +208,15 @@ demo.state0.prototype = {
                     bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
                     game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
                     
+                }
+                else if (bevonia.vulnerable && bevonia.stabbing){
+                    getHit.play();
+                    function invincible() {
+                    bevonia.self.body.sprite.alpha = 1;
+                }
+                    bevonia.self.body.sprite.alpha = 0.5;
+                    bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
+                    game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
                 }
             }
             

@@ -70,6 +70,7 @@ demo.state2.prototype = {
 //        console.log(inventory2.contents)
         
         //MUSIC
+        getHit = game.sound.add('getHit');
         backgroundMusic = game.add.audio('levelTwo');
         backgroundMusic.loop = true;
         backgroundMusic.play();        
@@ -244,6 +245,7 @@ demo.state2.prototype = {
                 }
                 else if (bevonia.vulnerable) {
                     bevonia.health -= bevonia.damageFactor;
+                    getHit.play();
                     bevonia.self.animations.stop();
                 var distance = 1000;
                 if (knockedTo == 0){
@@ -272,6 +274,15 @@ demo.state2.prototype = {
                     bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
                     game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
                     
+                }
+                else if (bevonia.vulnerable && bevonia.stabbing){
+                    getHit.play();
+                    function invincible() {
+                    bevonia.self.body.sprite.alpha = 1;
+                }
+                    bevonia.self.body.sprite.alpha = 0.5;
+                    bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
+                    game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
                 }
             }
             enemies2[j].manageVulnerability();

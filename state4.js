@@ -50,6 +50,7 @@ demo.state4.prototype = {
         backgroundMusic = game.add.audio('boss');
         backgroundMusic.loop = true;
         backgroundMusic.play();
+        getHit = game.sound.add('getHit');
         
         notDead = true;
         
@@ -123,9 +124,35 @@ demo.state4.prototype = {
             bevonia.health = 0;
         }
         if (bevonia.vulnerable && game.physics.arcade.overlap(bevonia.self, ball.self)) {
-            bevonia.health -= .5;
-            bevonia.vulnerable = false;
-            bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;
+            getHit.play();
+                    bevonia.health -= 0.5;
+                    bevonia.self.animations.stop();
+                var distance = 1000;
+                if (knockedTo == 0){
+                    knockedTo = (bevonia.self.body.x - (distance*2));
+                    bevonia.vulnerable = false;
+                }
+                bevonia.self.body.velocity.x = -500;
+                if (bevonia.self.body.x <= (knockedTo + distance/2)){
+                    bevonia.self.body.velocity.x = -500;
+                    bevonia.self.body.velocity.y = -200;
+                }
+                else{
+                    bevonia.self.body.velocity.y = -250;
+                    bevonia.self.body.velocity.x = -500;
+                }
+                if (bevonia.self.body.x <= knockedTo){
+                    bevonia.frame = 2;
+                    knockedTo = 0;
+                    knockback = false;
+                }
+                function invincible() {
+                    bevonia.self.body.sprite.alpha = 1;
+                }
+                    bevonia.vulnerable = false;
+                    bevonia.self.body.sprite.alpha = 0.5;
+                    bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
+                    game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
         }
         
     }      

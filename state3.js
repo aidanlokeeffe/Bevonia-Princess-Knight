@@ -65,6 +65,7 @@ demo.state3.prototype = {
         chest3.contents = [mana3_3];
         
         //MUSIC
+        getHit = game.sound.add('getHit');
         backgroundMusic = game.add.audio('levelThree');
         backgroundMusic.loop = true;
         backgroundMusic.play();
@@ -258,6 +259,7 @@ demo.state3.prototype = {
                     
                 }
                 else if (bevonia.vulnerable) {
+                    getHit.play();
                     bevonia.health -= bevonia.damageFactor;
                     bevonia.self.animations.stop();
                 var distance = 1000;
@@ -287,6 +289,15 @@ demo.state3.prototype = {
                     bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
                     game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
                     
+                }
+                else if (bevonia.vulnerable && bevonia.stabbing){
+                    getHit.play();
+                    function invincible() {
+                    bevonia.self.body.sprite.alpha = 1;
+                }
+                    bevonia.self.body.sprite.alpha = 0.5;
+                    bevonia.invincibilityTimer = game.time.now + bevonia.invincibilityPeriod;                   
+                    game.time.events.add(bevonia.invincibilityPeriod, invincible, this);
                 }
             }
             enemies3[j].manageVulnerability();
