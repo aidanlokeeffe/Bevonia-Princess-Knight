@@ -14,7 +14,7 @@ demo.state0.prototype = {
     
     create: function () {
     // CREATE ENVIRONMENT
-        game.stage.backgroundColor = "#60210d";
+        game.add.sprite(0,0,'bg0')
         
         
         var map0 = game.add.tilemap("tutorialLevel");
