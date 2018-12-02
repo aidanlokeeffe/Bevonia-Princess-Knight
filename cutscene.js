@@ -1,11 +1,22 @@
+var text1
+
+
+
 demo.cutscene = function () {};
 demo.cutscene.prototype = {
     preload: function () {
-<<<<<<< HEAD
+//<<<<<<< HEAD
+//<<<<<<< HEAD
         // Load backgrounds
         game.load.image("bgCutBroken", "assets/tilesets_backgrounds/cutscene background 3.png", 1066, 500);
         game.load.image("bgCut", "assets/tilesets_backgrounds/cutscene background 2.png", 1066, 500);
-        
+//=======
+        // Load background
+        game.load.image("bgCut", "assets/tilesets_backgrounds/cutscene background 2.5.png", 1198, 601);
+        game.load.image('bubble','assets/sprites/speech bubble.png',100,69)
+
+//>>>>>>> 6e78749b96316b09c07b8bd9ace8c844772f63c2
+
         // Load up character sprites
         game.load.spritesheet("bevoniaParty", "assets/sprites/bevoniaParty.png", 32, 48);
         game.load.spritesheet("kingStubbyLegs", "assets/sprites/king.png", 64, 85);
@@ -17,7 +28,8 @@ demo.cutscene.prototype = {
     },
     create: function () {
         game.add.sprite(0, 0, "bgCut");
-        
+//<<<<<<< HEAD
+
         // Add characters
         bevonia = game.add.sprite(465, 350, "bevoniaParty")
         king = game.add.sprite(580, 315, "kingStubbyLegs");
@@ -25,7 +37,7 @@ demo.cutscene.prototype = {
         bureaucrat = game.add.sprite(248, 430, "bureaucrat");
         wizards = game.add.sprite(820, 410, "wizards");
         //aggiememnon = game.add.sprite(v,b, "aggiememnon");
-        
+
         // Define, initiate character animations
         bevonia.animations.add("init", [0]);
         bevonia.animations.add("after", [1]);
@@ -41,34 +53,48 @@ demo.cutscene.prototype = {
         wizards.animations.add("init", [0, 1]);
         wizards.animations.add("after", [2]);
         wizards.animations.play("init", 8, true);
-        
-        
-        
-        
-        
-        
-=======
+
+
+
+
+
+
+//=======
         // Load background
         game.load.image("bgCut", "assets/tilesets_backgrounds/cutscene background 2.5.png", 1198, 601);
         game.load.image('bubble','assets/sprites/speech bubble.png',100,69)
-        
-        
+
+
     },
     create: function () {
         game.add.sprite(0, 0, "bgCut");
         bubble1 = game.add.sprite(300,200,'bubble')
 //        bubble1.scale.setTo(2,2)
->>>>>>> 0d9fd3cc29eb1a39b697453610643cf6a1ecc3ee
-        
-        
-        
+//>>>>>>> 0d9fd3cc29eb1a39b697453610643cf6a1ecc3ee
+
+
+
+//=======
+        bubble1 = game.add.sprite(300,200,'bubble')
+
+        text1 = new Typewriter()
+        text1.init(game, {
+            x: 310,
+            y: 210,
+            fontFamily: 'augusta',
+            fontSize: 12,
+            maxWidth: 190,
+            text: 'this is a test to see how the typing works. this is filler to see where the margins are cut off, and where the text ends. if you want to read me you can, but you probably won\'t get anything out of it. have a nice day'
+
+        })
+//        text1.start()
+//>>>>>>> 6e78749b96316b09c07b8bd9ace8c844772f63c2
     },
     update: function () {
-        
-        
-        
-        
-        
-        
-    }   
+        if(game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) text1.start()
+
+
+
+
+    }
 }
