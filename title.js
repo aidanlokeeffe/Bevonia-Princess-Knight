@@ -2,14 +2,14 @@ demo.title = function (game) {};
 demo.title.prototype = {
     create:function(game){
         
-        titlescreenBackground = game.add.sprite(100,0,'titleBackground');
+        titlescreenBackground = game.add.sprite(0,0,'titleBackground');
         
-        this.createButton(game,"Play",game.world.centerX,game.world.centerY+32,200,50,function(){
+        this.createButton(game,"Play",game.world.centerX-100,game.world.centerY+32,200,50,function(){
             this.state.start('state0');
             backgroundMusic.stop();
         });
         
-        titlescreen = game.add.sprite(game.world.centerX,game.world.centerY-152,'titlescreen');
+        titlescreen = game.add.sprite(game.world.centerX-100,game.world.centerY-152,'titlescreen');
         titlescreen.anchor.setTo(0.5,0.5);
         
         backgroundMusic = game.add.audio('titleMusic');
