@@ -67,6 +67,7 @@ demo.state0.prototype = {
         comma1 = game.add.text(1634,350,',',{fontsize: '25px', fill: '#ffffff'})
         comma2 = game.add.text(1834,350,',',{fontsize: '25px', fill: '#ffffff'})
         
+        getHit = game.sound.add('getHit');
     // CREATE BEVONIA
         door0 = new Door(2560, 64, "state1", null);
         chest0 = new Chest(597, 416, null, null);
@@ -179,6 +180,7 @@ demo.state0.prototype = {
                     enemies0[j].invincibilityTimer = game.time.now + 500;
                 }
                 else if (bevonia.vulnerable) {
+                    getHit.play();
                     bevonia.health -= bevonia.damageFactor;
                     bevonia.self.animations.stop();
                 var distance = 1000;
@@ -211,6 +213,7 @@ demo.state0.prototype = {
                 }
                 else if (bevonia.vulnerable && bevonia.stabbing){
                     getHit.play();
+                    getHit.play();
                     function invincible() {
                     bevonia.self.body.sprite.alpha = 1;
                 }
@@ -225,7 +228,7 @@ demo.state0.prototype = {
         
         // Spell enemy interaction
         if (bevonia.aoeExists) {
-            console.log(game.physics.arcade.overlap(bevonia.playerAOE.self, enemies0));
+            //console.log(game.physics.arcade.overlap(bevonia.playerAOE.self, enemies0));
             // Detect a collision with either the environment or enemies
             var k; for(k = 0; k < enemies0.length; k++) {
                 if (game.physics.arcade.overlap(bevonia.playerAOE.self, enemies0[k].self)) {

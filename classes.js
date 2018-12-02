@@ -418,7 +418,7 @@ demo.classes.prototype = {
                     console.log('health potion picked up')
                         
                     this.self.kill()
-                    this.player.health += 0.25
+                    this.player.health += 0.3
                     if(this.player.health >= 1) this.player.health = 1
                     return true
                 }
@@ -453,7 +453,7 @@ demo.classes.prototype = {
                 if(this.player.mana < 1){
                  console.log('mana potion picked up')
                  this.self.kill()
-                 this.player.mana += 0.25
+                 this.player.mana += 0.3
                  if(this.player.mana >= 1) this.player.mana = 1
                  return true
              }
@@ -696,8 +696,8 @@ demo.classes.prototype = {
                 this.self.animations.play("wave", 8, true);
                 this.player.lastResetX = x
                 this.player.lastResetY = y
-                this.replacementHealth = this.player.health
-                this.replacementMana = this.player.mana
+                this.replacementHealth = 1;
+                this.replacementMana = 1;
                 
 //                for(var x = 0; x < items.contents.length; x++){
 //                    if(items.contents[x] instanceof HealthPotion){
@@ -964,7 +964,7 @@ demo.classes.prototype = {
             // Spell casting
             // AOE
             this.castAOE = function () {
-                if (this.hasAOE && game.input.keyboard.isDown(Phaser.Keyboard.K) && this.aoeTimer < game.time.now && this.mana > 0.2) {
+                if (this.hasAOE && game.input.keyboard.isDown(Phaser.Keyboard.K) && this.aoeTimer < game.time.now && this.mana > 1.3877787807814457e-16) {
                     this.aoeTimer = game.time.now + 1000;
                     this.aoeExists = true;
                     this.playerAOE = new aoeProjectile(this);
@@ -975,7 +975,7 @@ demo.classes.prototype = {
                     this.playerAOE.self.body.velocity.y = -150;
                     this.playerAOE.self.body.gravity.y = 1200;
                     
-                    this.mana -= .2;
+                    this.mana -= .1;
                     var played = false
                 }
                 else if(this.aoeTimer - 500 > game.time.now) {
