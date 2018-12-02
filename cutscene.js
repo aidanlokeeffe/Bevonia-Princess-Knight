@@ -12,7 +12,6 @@ demo.cutscene.prototype = {
         game.load.image("bgCut", "assets/tilesets_backgrounds/cutscene background 2.png", 1066, 500);
 //=======
         // Load background
-        game.load.image("bgCut", "assets/tilesets_backgrounds/cutscene background 2.5.png", 1198, 601);
         game.load.image('bubble','assets/sprites/speech bubble.png',100,69)
 
 //>>>>>>> 6e78749b96316b09c07b8bd9ace8c844772f63c2
@@ -28,7 +27,6 @@ demo.cutscene.prototype = {
     },
     create: function () {
         game.add.sprite(0, 0, "bgCut");
-//<<<<<<< HEAD
 
         // Add characters
         bevonia = game.add.sprite(465, 350, "bevoniaParty")
@@ -54,27 +52,9 @@ demo.cutscene.prototype = {
         wizards.animations.add("after", [2]);
         wizards.animations.play("init", 8, true);
 
-
-
-
-
-
-//=======
-        // Load background
-        game.load.image("bgCut", "assets/tilesets_backgrounds/cutscene background 2.5.png", 1198, 601);
-        game.load.image('bubble','assets/sprites/speech bubble.png',100,69)
-
-
-    },
-    create: function () {
-        game.add.sprite(0, 0, "bgCut");
-        bubble1 = game.add.sprite(300,200,'bubble')
-//        bubble1.scale.setTo(2,2)
-//>>>>>>> 0d9fd3cc29eb1a39b697453610643cf6a1ecc3ee
-
-
-
-//=======
+        
+        
+        // Text bubble stuff
         bubble1 = game.add.sprite(300,200,'bubble')
 
         text1 = new Typewriter()
@@ -88,7 +68,6 @@ demo.cutscene.prototype = {
 
         })
 //        text1.start()
-//>>>>>>> 6e78749b96316b09c07b8bd9ace8c844772f63c2
     },
     update: function () {
         if(game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) text1.start()
