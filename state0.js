@@ -80,8 +80,8 @@ demo.state0.prototype = {
         sword0 = new Sword(48, 464, bevonia);
         armor0 = new Armor(509, 912, bevonia);
         aoe0 = new aoeItem(-100, -100, bevonia);
-        health0 = new HealthPotion(1623, 400);
-        mana0 = new ManaPotion(1824, 400);
+        health0 = new HealthPotion(1623, 400,bevonia);
+        mana0 = new ManaPotion(1824, 400,bevonia);
         
         chest0Contents = [aoe0];
         inventory0 = new Inventory(bevonia)
