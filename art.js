@@ -129,7 +129,9 @@ demo.art.prototype = {
         game.load.audio("schlang", "assets/sounds/swordGet.mp3");
         game.load.audio("stab", "assets/sounds/stab.mp3");
         game.load.audio("getHit", "assets/sounds/getHit.mp3");
+        game.load.audio("getMagic", "assets/sounds/getMagic.mp3");
         game.load.audio("fireball", "assets/sounds/fireball.mp3");
+        game.load.audio("checkpoint", "assets/sounds/checkpoint.mp3");
         game.load.audio("dragonDeath", "assets/sounds/dragonDeath.mp3");
         game.load.audio("dragonEnter", "assets/sounds/dragonEnter.mp3");
         game.load.audio("dragonSpit", "assets/sounds/dragonSpit.mp3");
