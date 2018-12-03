@@ -43,8 +43,8 @@ demo.state4.prototype = {
         }
         
         dragonBoss = new Dragon(bevonia);
-        dragonBar = game.add.sprite(374, 40, "dragonHealth");
-        dragonBar.fixedToCamera = true;
+        dragonBar = game.add.sprite(825, 100, "dragonHealth");
+        dragonBar.fixedToCamera = false;
         aoe5 = new aoeItem(532, 460, bevonia);
         mana5_1 = new ManaPotion(271, 432, bevonia);
         mana5_2 = new ManaPotion(781, 432, bevonia);
