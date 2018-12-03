@@ -20,7 +20,6 @@ demo.state0.prototype = {
     // CREATE ENVIRONMENT
         game.add.sprite(0,0,'bg0')
         
-        
         var map0 = game.add.tilemap("tutorialLevel");
         map0.addTilesetImage("floorV4");
         map0.addTilesetImage("deathSpikes");
@@ -77,6 +76,7 @@ demo.state0.prototype = {
         chest0 = new Chest(597, 416, null, null);
         
         bevonia = new Bevonia(95, 1003, 1344);
+        notReallyACheckpoint = new Checkpoint(-100,0,bevonia)
         
     // PLACE ITEMS
         key0 = new Key(477, 917, bevonia);
@@ -142,7 +142,7 @@ demo.state0.prototype = {
         
         bevonia.run();
         bevonia.jump();
-        bevonia.die();
+        if(bevonia.die()) notReallyACheckpoint.resetToCheckpoint()
         bevonia.manageVulnerability();
         bevonia.stab();
         bevonia.castAOE();
