@@ -12,6 +12,7 @@ demo.state4.prototype = {
         
     },
     create: function () {
+        this.camera.flash('#000000')
         game.stage.backgroundColor = "000000";
         var bg4 = game.add.sprite(0, 0, "bg4");
         

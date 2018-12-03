@@ -13,6 +13,7 @@ demo.state2.prototype = {
         
     },
     create: function () {
+        this.camera.flash('#000000')
         // CREATE ENVIRONMENT
         game.stage.backgroundColor = "#111111";
         var bg2 = game.add.sprite(0, 0, "bg2");
