@@ -1,4 +1,5 @@
 var knockedTo = 10;
+var text1
 demo.state0 = function () {};
 demo.state0.prototype = {
     preload: function () {
@@ -10,9 +11,12 @@ demo.state0.prototype = {
         game.load.spritesheet('ONE','assets/sprites/ONE.png',32,32)
         game.load.spritesheet('TWO','assets/sprites/TWO.png',32,32)
         
+        game.load.image('bubble','assets/sprites/speech bubble.png',100,69)
+        
     },
     
     create: function () {
+        this.camera.flash('#000000');
     // CREATE ENVIRONMENT
         game.add.sprite(0,0,'bg0')
         
@@ -108,11 +112,27 @@ demo.state0.prototype = {
         backgroundMusic.loop = true;
         backgroundMusic.play();  
         
+        bubble = game.add.sprite(270,955,'bubble')
+        bubble.scale.x = -1
         
-        
+        text1 = new Typewriter()
+        text1.init(game, {
+            x: 82,
+            y: 965,
+            fontFamily: 'augusta',
+            fontSize: 12,
+            maxWidth: 178,
+            text: 'Curse that Aggiememnon! Could he be the one behind the kingdom\'s troubles? I\'m not going to wait around in this tower, awaiting rescue! Looks like I\'ll have to break myself out!'
+        })
+        text1.start()
         
     },
     update: function () {
+        if(game.input.keyboard.isDown(Phaser.Keyboard.W) || game.input.keyboard.isDown(Phaser.Keyboard.A) || game.input.keyboard.isDown(Phaser.Keyboard.D) || game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+           text1.destroy()
+           bubble.visible = false
+        }
+        
         game.physics.arcade.collide(bevonia.self, platforms0);
         game.physics.arcade.collide(skeleton0.self, platforms0);
         game.physics.arcade.collide(health0.self, platforms0);
