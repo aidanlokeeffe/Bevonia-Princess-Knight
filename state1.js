@@ -4,6 +4,7 @@ var bevonia = null;
 var inventory1 = null;
 var platforms1;
 var knockedTo = 10;
+var text1
 demo.state1 = function () {};
 demo.state1.prototype = {
     preload: function () {
@@ -11,8 +12,10 @@ demo.state1.prototype = {
         game.load.tilemap("level1", "assets/tilemaps/level1V2.json", null, Phaser.Tilemap.TILED_JSON);
         game.load.image("wall sprite 2", "assets/tilesets_backgrounds/wall sprite 2.png");
         
+        game.load.image('bubble','assets/sprites/speech bubble.png',100,69)
     },
     create: function () {
+        this.camera.flash('#000000')
     // CREATE ENVIRONMENT
         // Background
         background1 = game.add.sprite(0, 0, "bg1");
@@ -80,10 +83,28 @@ demo.state1.prototype = {
         
         items1 = [sword, armor, spell, key, exitKey, door1, chest1_1, healthPotion, manaPotion, healthPotion2, manaPotion1, manaPotion2];
         
+        bubble = game.add.sprite(320,30,'bubble')
+        bubble.scale.x = -1
+        bubble.scale.y = 1.1
         
+        text1 = new Typewriter()
+        text1.init(game, {
+            x: 133,
+            y: 40,
+            fontFamily: 'augusta',
+            fontSize: 12,
+            maxWidth: 178,
+            text: 'Curses! How large is this tower dungeon, and what horrible monsters does Aggiememnon have under his control? It seems like this armor and sword I found are not durable enough; I\'ll have to find another if I am to make my way out of here.'
+        })
+        text1.start()
         
     },
     update: function () {
+        if(game.input.keyboard.isDown(Phaser.Keyboard.W) || game.input.keyboard.isDown(Phaser.Keyboard.A) || game.input.keyboard.isDown(Phaser.Keyboard.D) || game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
+           text1.destroy()
+           bubble.visible = false
+        }
+        
         game.physics.arcade.collide(bevonia.self, platforms1);
         game.physics.arcade.collide(healthPotion.self,platforms1)
         game.physics.arcade.collide(healthPotion2.self,platforms1)

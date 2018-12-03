@@ -23,12 +23,12 @@ demo.cutscene.prototype = {
         game.load.spritesheet("aggiememnon", "assets/sprites/Aggiememnon.png", 85, 85);
 
     },
-    create: function () {
-        
+    create: function () {     
         backgroundMusic = game.add.audio('cutsceneMusic');
         backgroundMusic.loop = true;
         backgroundMusic.play();  
         
+        this.camera.flash('#000000');
         bg1 = game.add.sprite(0, 0, "bgCutBroken");
         bg2 = game.add.sprite(0, 0, "bgCut");
 

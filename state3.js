@@ -10,6 +10,7 @@ demo.state3.prototype = {
         
     },
     create: function () {
+        this.camera.flash('#000000')
         var background3 = game.add.sprite(0,10,'bg3')
         
         var map3 = game.add.tilemap("level3");
