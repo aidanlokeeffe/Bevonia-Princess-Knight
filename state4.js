@@ -12,6 +12,7 @@ demo.state4.prototype = {
         
     },
     create: function () {
+        game.stage.backgroundColor = "000000";
         var bg4 = game.add.sprite(0, 0, "bg4");
         
         var map5 = game.add.tilemap("dragonRoom");
@@ -22,7 +23,7 @@ demo.state4.prototype = {
         platforms5 = map5.createLayer("platforms DRAGON");
         map5.setCollision(1, true, "platforms DRAGON");
         
-        door5 = new Door(1024, 384, "title", null);
+        door5 = new Door(1024, 384, "credits", null);
         bevonia = new Bevonia(52, 430, 512);
         door5.player = bevonia;
         bars = new Bars(bevonia);
@@ -43,9 +44,11 @@ demo.state4.prototype = {
         dragonBoss = new Dragon(bevonia);
         dragonBar = game.add.sprite(374, 40, "dragonHealth");
         dragonBar.fixedToCamera = true;
-        aoe5 = new aoeItem(512, 432, bevonia);
+        aoe5 = new aoeItem(532, 460, bevonia);
+        mana5_1 = new ManaPotion(271, 432, bevonia);
+        mana5_2 = new ManaPotion(781, 432, bevonia);
         
-        items5 = [door5, aoe5];
+        items5 = [door5, aoe5, mana5_1, mana5_2];
         
         backgroundMusic = game.add.audio('boss');
         backgroundMusic.loop = true;
@@ -60,6 +63,8 @@ demo.state4.prototype = {
     },
     update: function () {
         game.physics.arcade.collide(bevonia.self, platforms5);
+        game.physics.arcade.collide(mana5_1.self, platforms5);
+        game.physics.arcade.collide(mana5_2.self, platforms5);
         
         bars.displayStats();
         dragonBar.scale.x = dragonBoss.health;
@@ -80,7 +85,7 @@ demo.state4.prototype = {
             var i; for (i = 0; i < items5.length; i++) {
                 if (game.physics.arcade.overlap(bevonia.self, items5[i].self)) {
                     if(items5[i].interactWith())
-                        inventory.add(items5[i])
+                        inventory4.add(items5[i])
                 }
             }
         }
