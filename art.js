@@ -135,6 +135,7 @@ demo.art.prototype = {
         game.load.audio("dragonDeath", "assets/sounds/dragonDeath.mp3");
         game.load.audio("dragonEnter", "assets/sounds/dragonEnter.mp3");
         game.load.audio("dragonSpit", "assets/sounds/dragonSpit.mp3");
+        game.load.audio("evilLaugh", "assets/sounds/aggieLaugh.mp3");
         
         
         // Music

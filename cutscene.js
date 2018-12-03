@@ -23,11 +23,12 @@ demo.cutscene.prototype = {
         game.load.spritesheet("fool", "assets/sprites/Lachlan.png", 48, 96);
         game.load.spritesheet("bureaucrat", "assets/sprites/bigBrotherPrinceDilmore.png", 32, 56);
         game.load.spritesheet("wizards", "assets/sprites/twoWizards.png", 96, 64);
-        game.load.spritesheet("aggiememnon", "assets/sprites/Aggiememnon.png", 45, 45);
+        game.load.spritesheet("aggiememnon", "assets/sprites/Aggiememnon.png", 85, 85);
 
     },
     create: function () {
-        game.add.sprite(0, 0, "bgCut");
+        bg1 = game.add.sprite(0, 0, "bgCutBroken");
+        bg2 = game.add.sprite(0, 0, "bgCut");
 
         // Add characters
         bevonia = game.add.sprite(465, 350, "bevoniaParty")
@@ -35,7 +36,9 @@ demo.cutscene.prototype = {
         fool = game.add.sprite(297, 393, "fool");
         bureaucrat = game.add.sprite(248, 430, "bureaucrat");
         wizards = game.add.sprite(820, 410, "wizards");
-        //aggiememnon = game.add.sprite(v,b, "aggiememnon");
+        aggiememnon = game.add.sprite(-85, -85, "aggiememnon");
+        
+        game.physics.enable([bevonia, aggiememnon]);
 
         // Define, initiate character animations
         bevonia.animations.add("init", [0]);
@@ -52,7 +55,9 @@ demo.cutscene.prototype = {
         wizards.animations.add("init", [0, 1]);
         wizards.animations.add("after", [2]);
         wizards.animations.play("init", 8, true);
-
+        aggiememnon.animations.add("init", [0, 1]);
+        aggiememnon.animations.add("after", [2, 3]);
+        aggiememnon.animations.play("init", 8, true);
         
         
         // Text bubble stuff
@@ -82,7 +87,7 @@ demo.cutscene.prototype = {
             x: 310,
             y: 210,
             fontFamily: 'augusta',
-            fontSize: 12,
+            fontSize: 14,
             maxWidth: 180,
             text: 'What do you propose we shall do? We must act soon or else the kingdom may be thrown into turmoil. We must unite the Kingdom!'
 
@@ -92,7 +97,7 @@ demo.cutscene.prototype = {
             x: 310,
             y: 210,
             fontFamily: 'augusta',
-            fontSize: 12,
+            fontSize: 14,
             maxWidth: 180,
             text: 'That sounds like a wonderful plan, Father! I shall depart as soon as I can!'
 
@@ -103,7 +108,7 @@ demo.cutscene.prototype = {
             x: 590,
             y: 180,
             fontFamily: 'augusta',
-            fontSize: 12,
+            fontSize: 14,
             maxWidth: 175,
             text: 'You are correct, Bevonia. I too, have noticed these most troublesome changes. Each day in court, the Nobles become more belligerent. I fear they may even be inciting strife among the ordinary citizens.'
 
@@ -113,7 +118,7 @@ demo.cutscene.prototype = {
             x: 590,
             y: 180,
             fontFamily: 'augusta',
-            fontSize: 12,
+            fontSize: 14,
             maxWidth: 175,
             text: 'We must make sure that all areas and parts of the Kingdom become united under one banner. I propose that you travel with an envoy to the other parts of the Kingdom to appeal to the lords who reside there.'
 
@@ -123,9 +128,9 @@ demo.cutscene.prototype = {
             x: 590,
             y: 180,
             fontFamily: 'augusta',
-            fontSize: 12,
+            fontSize: 14,
             maxWidth: 175,
-            text: 'Excellent! I am glad you agree with me, Bevonia. Hopefully, with this new strategy, we can-'
+            text: 'Excellent! I am glad you agree with me, Bevonia. Hopefully, with this new strategy, we can-------'
 
         })
         
@@ -135,24 +140,92 @@ demo.cutscene.prototype = {
         text0.start()
         counter = 1
         spaceCounter = 0
+        
+        laugh = game.sound.add("evilLaugh")
+        aah = game.sound.add("die")
+        
+        // Various booleans
+        sceneTimer = 0;
+        timerNotSet = true;
+        notLaughed = true;
+        noContact = true;
+        noBreak = true;
+        Break = false;
+        canGo = false;
+        
+        
+        
+        
+        
+        
     },
     update: function () {
-        
-        if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && counter < textArray.length && spaceCounter < game.time.now){
+        console.log(counter)
+        if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && counter < (textArray.length + 1) && spaceCounter < game.time.now){
 //            promptText.visible = false
-            if(counter%2 == 0){
+            if(counter % 2 == 0){
                 bubble1.visible = true
                 bubble2.visible = false
             }
-            else if(counter%2 == 1){
+            else if(counter % 2 == 1){
                 bubble1.visible = false
                 bubble2.visible = true
             }
             
+            
             textArray[counter-1].destroy()
-            textArray[counter].start()
+            if (counter <= 5) {
+                textArray[counter].start()
+            }
             counter++
-            spaceCounter = game.time.now + 100
+            spaceCounter = game.time.now + 200
+        }
+        else if (counter >= 7) {
+            // Setup scene timer
+            if (timerNotSet) {
+                timerNotSet = false;
+                sceneTimer = game.time.now
+            }
+            // Remove text
+            bubble1.visible = false;
+            promptText.kill();
+            
+            // Aggiememnon makes his entrance
+            if (notLaughed) {
+                laugh.play();
+                notLaughed = false;
+            }
+            if (sceneTimer >= 3730 && noContact){
+                aggiememnon.body.velocity.x = 400 * 0.784;
+                aggiememnon.body.velocity.y = 400 * 0.621;
+                noContact = false;
+            }
+            // Aggiememnon catches Bevonia
+            else if (game.physics.arcade.overlap(bevonia, aggiememnon) && noBreak){
+                bevonia.kill();
+                aggiememnon.animations.play("after", 8, true);
+                aah.play();
+                king.animations.play("after", 8, true);
+                bureaucrat.animations.play("after", 8, true);
+                wizards.animations.play("after", 8, true);
+                
+                aggiememnon.body.velocity.x = 400 * 0.480;
+                aggiememnon.body.velocity.y = 400 * -0.890;
+                    
+                noBreak = false;
+                
+            }
+            else if (!noBreak && aggiememnon.body.y < 160) {
+                bg2.kill();
+                aggiememnon.kill();
+                canGo = true;
+            }
+            if (canGo && game.time.now - sceneTimer >= 4000){
+                game.state.start("state0");
+            }
+            
+            
+            
         }
         
 
