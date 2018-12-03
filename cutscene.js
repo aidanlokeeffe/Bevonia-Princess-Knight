@@ -6,16 +6,13 @@ var counter, spaceCounter
 demo.cutscene = function () {};
 demo.cutscene.prototype = {
     preload: function () {
-//<<<<<<< HEAD
-//<<<<<<< HEAD
+        
         // Load backgrounds
         game.load.image("bgCutBroken", "assets/tilesets_backgrounds/cutscene background 3.png", 1066, 500);
         game.load.image("bgCut", "assets/tilesets_backgrounds/cutscene background 2.png", 1066, 500);
-//=======
         // Load background
         game.load.image('bubble','assets/sprites/speech bubble.png',100,69)
 
-//>>>>>>> 6e78749b96316b09c07b8bd9ace8c844772f63c2
 
         // Load up character sprites
         game.load.spritesheet("bevoniaParty", "assets/sprites/bevoniaParty.png", 32, 48);
@@ -26,7 +23,11 @@ demo.cutscene.prototype = {
         game.load.spritesheet("aggiememnon", "assets/sprites/Aggiememnon.png", 85, 85);
 
     },
-    create: function () {
+    create: function () {     
+        backgroundMusic = game.add.audio('cutsceneMusic');
+        backgroundMusic.loop = true;
+        backgroundMusic.play();  
+        
         this.camera.flash('#000000');
         bg1 = game.add.sprite(0, 0, "bgCutBroken");
         bg2 = game.add.sprite(0, 0, "bgCut");
@@ -144,6 +145,7 @@ demo.cutscene.prototype = {
         
         laugh = game.sound.add("evilLaugh")
         aah = game.sound.add("die")
+        glass = game.sound.add("glass");
         
         // Various booleans
         sceneTimer = 0;
@@ -193,6 +195,7 @@ demo.cutscene.prototype = {
             
             // Aggiememnon makes his entrance
             if (notLaughed) {
+                backgroundMusic.stop();
                 laugh.play();
                 notLaughed = false;
             }
@@ -217,7 +220,10 @@ demo.cutscene.prototype = {
                 
             }
             else if (!noBreak && aggiememnon.body.y < 160) {
+                console.log("WTF");
+                glass.play();
                 bg2.kill();
+                
                 aggiememnon.kill();
                 canGo = true;
             }
