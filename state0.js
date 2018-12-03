@@ -1,5 +1,5 @@
 var knockedTo = 10;
-var text1
+var text0
 demo.state0 = function () {};
 demo.state0.prototype = {
     preload: function () {
@@ -16,7 +16,7 @@ demo.state0.prototype = {
     },
     
     create: function () {
-        this.camera.flash('#000000');
+        this.camera.flash('#000000')
     // CREATE ENVIRONMENT
         game.add.sprite(0,0,'bg0')
         
@@ -115,8 +115,8 @@ demo.state0.prototype = {
         bubble = game.add.sprite(270,955,'bubble')
         bubble.scale.x = -1
         
-        text1 = new Typewriter()
-        text1.init(game, {
+        text0 = new Typewriter()
+        text0.init(game, {
             x: 82,
             y: 965,
             fontFamily: 'augusta',
@@ -124,12 +124,12 @@ demo.state0.prototype = {
             maxWidth: 178,
             text: 'Curse that Aggiememnon! Could he be the one behind the kingdom\'s troubles? I\'m not going to wait around in this tower, awaiting rescue! Looks like I\'ll have to break myself out!'
         })
-        text1.start()
+        text0.start()
         
     },
     update: function () {
         if(game.input.keyboard.isDown(Phaser.Keyboard.W) || game.input.keyboard.isDown(Phaser.Keyboard.A) || game.input.keyboard.isDown(Phaser.Keyboard.D) || game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)){
-           text1.destroy()
+           text0.destroy()
            bubble.visible = false
         }
         
