@@ -5,7 +5,7 @@ demo.title.prototype = {
         titlescreenBackground = game.add.sprite(0,0,'titleBackground');
         
         this.createButton(game,"Play",548,350,200,50,function(){
-            this.state.start('state0');
+            this.state.start('cutscene');
             backgroundMusic.stop();
         });
         
