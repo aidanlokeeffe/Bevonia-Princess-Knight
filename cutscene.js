@@ -155,7 +155,7 @@ demo.cutscene.prototype = {
         noBreak = true;
         Break = false;
         canGo = false;
-        
+        glassNotPlay = true;
         
         
         
@@ -181,7 +181,7 @@ demo.cutscene.prototype = {
                 textArray[counter].start()
             }
             counter++
-            spaceCounter = game.time.now + 200
+            spaceCounter = game.time.now + 400
         }
         else if (counter >= 7) {
             // Setup scene timer
@@ -221,7 +221,10 @@ demo.cutscene.prototype = {
             }
             else if (!noBreak && aggiememnon.body.y < 160) {
                 console.log("WTF");
-                glass.play();
+                    if (glassNotPlay) {
+                        glass.play();
+                        glassNotPlay = false;
+                    }
                 bg2.kill();
                 
                 aggiememnon.kill();
