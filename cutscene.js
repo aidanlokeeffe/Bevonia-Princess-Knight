@@ -27,6 +27,7 @@ demo.cutscene.prototype = {
 
     },
     create: function () {
+        this.camera.flash('#000000');
         bg1 = game.add.sprite(0, 0, "bgCutBroken");
         bg2 = game.add.sprite(0, 0, "bgCut");
 
