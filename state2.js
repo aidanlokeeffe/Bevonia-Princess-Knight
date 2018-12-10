@@ -77,7 +77,8 @@ demo.state2.prototype = {
         backgroundMusic.play();     
         
         //PAUSE
-        pause_label = game.add.text(950, 8, 'Pause', { fontFamily: 'augusta', fill: '#ffffff', fontWeight: 'bold' });
+        pause_label = game.add.text(950, 8, 'Pause', {fill: '#ffffff', fontWeight: 'bold' });
+        pause_label.font = 'augusta';
         pause_label.setShadow(5, 5, 'rgba(0,0,0,0.5)', 15);
         pause_label.fixedToCamera = true;
         pause_label.inputEnabled = true;
