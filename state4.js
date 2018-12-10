@@ -56,6 +56,22 @@ demo.state4.prototype = {
         backgroundMusic.play();
         getHit = game.sound.add('getHit');
         
+        //PAUSE
+        pause_label = game.add.text(950, 8, 'Pause', { fontFamily: 'augusta', fill: '#ffffff', fontWeight: 'bold' });
+        pause_label.setShadow(5, 5, 'rgba(0,0,0,0.5)', 15);
+        pause_label.fixedToCamera = true;
+        pause_label.inputEnabled = true;
+        pause_label.events.onInputUp.add(function () {
+        game.paused = true;
+        });
+        game.input.onDown.add(unpause, self);
+        function unpause(event){
+        // Only act if paused
+        if(game.paused){
+            game.paused = false;
+        }
+        }
+        
         notDead = true;
         
         notReallyACheckpoint = new Checkpoint(-100,-100,bevonia)

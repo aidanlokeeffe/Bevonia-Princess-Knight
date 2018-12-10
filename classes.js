@@ -344,6 +344,8 @@ demo.classes.prototype = {
         // Items get argument player so interaction functions can get put in item
         // classes insead of Bevonia class; reduces clutter
         
+        
+        
         Sword = function (x, y, player) {
             // Setup
             this.self = game.add.sprite(x, y, "sword");

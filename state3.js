@@ -71,6 +71,22 @@ demo.state3.prototype = {
         backgroundMusic.loop = true;
         backgroundMusic.play();
         
+        //PAUSE
+        pause_label = game.add.text(950, 8, 'Pause', { fontFamily: 'augusta', fill: '#ffffff', fontWeight: 'bold' });
+        pause_label.setShadow(5, 5, 'rgba(0,0,0,0.5)', 15);
+        pause_label.fixedToCamera = true;
+        pause_label.inputEnabled = true;
+        pause_label.events.onInputUp.add(function () {
+        game.paused = true;
+        });
+        game.input.onDown.add(unpause, self);
+        function unpause(event){
+        // Only act if paused
+        if(game.paused){
+            game.paused = false;
+        }
+        }
+        
         items3 = [door3, chest3, armor3, sword3, key3, health3_1, health3_2, mana3_1, mana3_2, mana3_3, exitKey3, aoe3];
         
         skel3_1 = new Skeleton(400, 592, 322, 417, bevonia);

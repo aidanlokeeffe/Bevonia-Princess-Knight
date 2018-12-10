@@ -1,5 +1,6 @@
 var knockedTo = 10;
 var text0
+var paused = false;
 demo.state0 = function () {};
 demo.state0.prototype = {
     preload: function () {
@@ -87,6 +88,22 @@ demo.state0.prototype = {
         health0 = new HealthPotion(1623, 400,bevonia);
         mana0 = new ManaPotion(1824, 400,bevonia);
         
+        pause_label = game.add.text(950, 8, 'Pause', { fontFamily: 'augusta', fill: '#ffffff', fontWeight: 'bold' });
+        pause_label.setShadow(5, 5, 'rgba(0,0,0,0.5)', 15);
+        pause_label.fixedToCamera = true;
+        pause_label.inputEnabled = true;
+        pause_label.events.onInputUp.add(function () {
+        game.paused = true;
+        });
+        game.input.onDown.add(unpause, self);
+        function unpause(event){
+        // Only act if paused
+        if(game.paused){
+            game.paused = false;
+        }
+        }
+    
+            
         chest0Contents = [aoe0];
         inventory0 = new Inventory(bevonia)
         
@@ -138,6 +155,7 @@ demo.state0.prototype = {
         game.physics.arcade.collide(health0.self, platforms0);
         game.physics.arcade.collide(mana0.self, platforms0);
         
+        
         bars.displayStats();
         
         bevonia.run();
@@ -153,17 +171,17 @@ demo.state0.prototype = {
         
         inventory0.selector()
         
-        // Item interaction
-        if (game.input.keyboard.isDown(Phaser.Keyboard.E)) {
-            var i; for(i = 0; i < items0.length; i++) {
-                if (game.physics.arcade.overlap(bevonia.self, items0[i].self)) {
-                    if(items0[i].interactWith())
-                        inventory0.add(items0[i])
-                    inventory0.display()
-                    //items0.splice(j, 1);
-                }
-            }
-        }
+//        if(game.input.keyboard.isDown(Phaser.Keyboard.ENTER) && paused == false){
+//            this.game.physics.arcade.isPaused= true;
+//            paused = true;
+//            bevonia.self.animations.paused = true;
+//        }
+//        else if (game.input.keyboard.isDown(Phaser.Keyboard.ENTER) && paused == true){
+//            this.game.physics.arcade.isPaused= false;
+//            paused = false;
+//            bevonia.self.animations.paused = false;
+//                
+//        }
         
         // Enemy interaction
         var j; for (j = 0; j < enemies0.length; j++) {
