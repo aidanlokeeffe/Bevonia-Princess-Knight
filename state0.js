@@ -1,6 +1,5 @@
 var knockedTo = 10;
 var text0
-var paused = false;
 demo.state0 = function () {};
 demo.state0.prototype = {
     preload: function () {
@@ -87,23 +86,7 @@ demo.state0.prototype = {
         aoe0 = new aoeItem(-100, -100, bevonia);
         health0 = new HealthPotion(1623, 400,bevonia);
         mana0 = new ManaPotion(1824, 400,bevonia);
-        
-        pause_label = game.add.text(950, 8, 'Pause', { fontFamily: 'augusta', fill: '#ffffff', fontWeight: 'bold' });
-        pause_label.setShadow(5, 5, 'rgba(0,0,0,0.5)', 15);
-        pause_label.fixedToCamera = true;
-        pause_label.inputEnabled = true;
-        pause_label.events.onInputUp.add(function () {
-        game.paused = true;
-        });
-        game.input.onDown.add(unpause, self);
-        function unpause(event){
-        // Only act if paused
-        if(game.paused){
-            game.paused = false;
-        }
-        }
-    
-            
+         
         chest0Contents = [aoe0];
         inventory0 = new Inventory(bevonia)
         
