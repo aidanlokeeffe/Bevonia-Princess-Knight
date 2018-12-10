@@ -86,7 +86,7 @@ demo.state0.prototype = {
         aoe0 = new aoeItem(-100, -100, bevonia);
         health0 = new HealthPotion(1623, 400,bevonia);
         mana0 = new ManaPotion(1824, 400,bevonia);
-         
+        
         chest0Contents = [aoe0];
         inventory0 = new Inventory(bevonia)
         
@@ -138,7 +138,6 @@ demo.state0.prototype = {
         game.physics.arcade.collide(health0.self, platforms0);
         game.physics.arcade.collide(mana0.self, platforms0);
         
-        
         bars.displayStats();
         
         bevonia.run();
@@ -154,17 +153,17 @@ demo.state0.prototype = {
         
         inventory0.selector()
         
-//        if(game.input.keyboard.isDown(Phaser.Keyboard.ENTER) && paused == false){
-//            this.game.physics.arcade.isPaused= true;
-//            paused = true;
-//            bevonia.self.animations.paused = true;
-//        }
-//        else if (game.input.keyboard.isDown(Phaser.Keyboard.ENTER) && paused == true){
-//            this.game.physics.arcade.isPaused= false;
-//            paused = false;
-//            bevonia.self.animations.paused = false;
-//                
-//        }
+        // Item interaction
+        if (game.input.keyboard.isDown(Phaser.Keyboard.E)) {
+            var i; for(i = 0; i < items0.length; i++) {
+                if (game.physics.arcade.overlap(bevonia.self, items0[i].self)) {
+                    if(items0[i].interactWith())
+                        inventory0.add(items0[i])
+                    inventory0.display()
+                    //items0.splice(j, 1);
+                }
+            }
+        }
         
         // Enemy interaction
         var j; for (j = 0; j < enemies0.length; j++) {
