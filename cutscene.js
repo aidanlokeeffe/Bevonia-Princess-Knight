@@ -89,7 +89,7 @@ demo.cutscene.prototype = {
             x: 310,
             y: 210,
             fontFamily: 'augusta',
-            fontSize: 14,
+            fontSize: 12,
             maxWidth: 180,
             text: 'What do you propose we shall do? We must act soon or else the kingdom may be thrown into turmoil. We must unite the Kingdom!'
 
@@ -99,7 +99,7 @@ demo.cutscene.prototype = {
             x: 310,
             y: 210,
             fontFamily: 'augusta',
-            fontSize: 14,
+            fontSize: 12,
             maxWidth: 180,
             text: 'That sounds like a wonderful plan, Father! I shall depart as soon as I can!'
 
@@ -110,7 +110,7 @@ demo.cutscene.prototype = {
             x: 590,
             y: 180,
             fontFamily: 'augusta',
-            fontSize: 14,
+            fontSize: 12,
             maxWidth: 175,
             text: 'You are correct, Bevonia. I too, have noticed these most troublesome changes. Each day in court, the Nobles become more belligerent. I fear they may even be inciting strife among the ordinary citizens.'
 
@@ -120,7 +120,7 @@ demo.cutscene.prototype = {
             x: 590,
             y: 180,
             fontFamily: 'augusta',
-            fontSize: 14,
+            fontSize: 12,
             maxWidth: 175,
             text: 'We must make sure that all areas and parts of the Kingdom become united under one banner. I propose that you travel with an envoy to the other parts of the Kingdom to appeal to the lords who reside there.'
 
@@ -130,7 +130,7 @@ demo.cutscene.prototype = {
             x: 590,
             y: 180,
             fontFamily: 'augusta',
-            fontSize: 14,
+            fontSize: 12,
             maxWidth: 175,
             text: 'Excellent! I am glad you agree with me, Bevonia. Hopefully, with this new strategy, we can-------'
 
